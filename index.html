@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title> Parsnip </title>
+		<base target = "frame1">
+	</head>
+
+	<body onload="refreshFrame();">
+		<p> Hello World </p>
+
+		<button type="button"> Record </button>
+		<button type="button"> Clear </button>
+		<button type="button"> Save </button>
+		<button type="button"> Load </button>
+		<button type="button"> Undo </button>
+
+		<h3> Name/ID </h3>
+		<input type="text" name="LOL">
+
+		<h3> Macro </h3>
+		<textarea rows="10" cols="50" disabled> 
+			Action 1 Performed
+			Action 2 Performed
+			Action 3 Performed
+		</textarea>
+
+		<h3> Condition </h3>
+		<select>
+			<option value="None">None</option>
+			<option value="Time">Time</option>
+			<option value="Value">Value</option>
+		</select>
+
+		<br>
+
+		<a href="http://www.w3schools.com" target="frame1">Visit W3Schools</a>
+
+		<br>
+		
+		<iframe name="frame1" id="frame1" src="http://www.cnn.com/" width="800" height="300">
+		</iframe>
+
+		<br>
+
+		<button type="button"> Play </button>
+
+		<br />
+		<br />
+		<input id="URLBox"></input>
+
+		<button id="URLtrig" onclick="go()">Go!</button>
+		<br />
+		<br />
+		
+		<object data="http://www.google.com/" width="800" height="300"><embed src="http://www.google.com/" width="800" height="300"></embed></object>
+		<br />
+		<br />
+		<script>
+			function go() {
+				var o = document.getElementById('obj');
+				if (o) {
+					 o.parentNode.removeChild(o);
+				};
+				var x = document.getElementById("URLBox").value;
+				var objec = document.createElement("OBJECT");
+				objec.setAttribute("data", x);
+				objec.setAttribute("id", "obj");
+				document.body.appendChild(objec);
+			}
+			</script>
+			<button id="test" onclick="testURL()">Retrieve Embedded URL</button>
+			<script>
+			function testURL() {
+				var y = document.getElementById('obj');
+				if (y) {
+					var g = y.getAttribute('src');
+					document.getElementById('embedReport').innerHTML = g;
+				};
+			}
+		</script>
+		<br />
+		<br />
+		<p id="embedReport">test</p>
+	</body>
+
+</html>
