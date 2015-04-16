@@ -1,0 +1,61 @@
+body {
+    background-color: white;
+}
+
+.recordBtn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  font-weight: bold;
+  color: #ec0000;
+  font-size: 16px;
+  background: #660c0c;
+  padding: 8px 15px 8px 15px;
+  text-decoration: none;
+}
+
+.recordBtn:hover {
+  background: #751111;
+  text-decoration: none;
+  outline: solid #ec0000 2px;
+  outline-offset: -7px;
+}
+
+.stdBtn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 16px;
+  background: #292929;
+  padding: 8px 15px 8px 15px;
+  text-decoration: none;
+}
+
+.stdBtn:hover {
+  outline: solid #cccccc 2px;
+  outline-offset: -7px;
+  background: #757575;
+  text-decoration: none;
+}
+
+.dsbBtn{
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  font-family: Arial;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 16px;
+  background: #858585;
+  padding: 8px 15px 8px 15px;
+  text-decoration: none;
+}
+
+h1 {
+    color: navy;
+    margin-left: 20px;
+}

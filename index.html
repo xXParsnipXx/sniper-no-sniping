@@ -2,86 +2,135 @@
 <html>
 
 	<head>
-		<title> Parsnip </title>
-		<base target = "frame1">
+		<title> ParSnip - Sniping Utility </title>
+		<link rel="stylesheet" type="text/css" href="mystyle.css">
 	</head>
+	<script language="javascript">
+		function ScaleSize() {
+		document.getElementById("banner").width = (document.body.clientWidth * 0.35);
+		};
+		
+		function recordMF() {
+			if (document.getElementById('rcd').innerHTML == ' RECORD ') {
+				var PH = '';
+				for (i = 1; i < 10; i++) {
+					PH += 'Action ' + i.toString() + ' performed!';
+					if (i < 9) {
+						PH += '\n';
+					};
+				};
+				document.getElementById("macroframe").value = PH;
+				var y = document.getElementById('rcd');
+				document.getElementById('clr').disabled = true;
+				document.getElementById('clr').className = 'dsbBtn';
+				document.getElementById('sav').disabled = true;
+				document.getElementById('sav').className = 'dsbBtn';
+				document.getElementById('lod').disabled = true;
+				document.getElementById('lod').className = 'dsbBtn';
+				y.innerHTML = ' STOP ';
+			} else {
+				var y = document.getElementById('rcd');
+				document.getElementById('clr').disabled = false;
+				document.getElementById('clr').className = 'stdBtn';
+				document.getElementById('sav').disabled = false;
+				document.getElementById('sav').className = 'stdBtn';
+				document.getElementById('lod').disabled = false;
+				document.getElementById('lod').className = 'stdBtn';
+				y.innerHTML = ' RECORD ';
+			};
+		}
 
-	<body onload="refreshFrame();">
-		<p> Hello World </p>
+		function clearMF() {
+			document.getElementById("macroframe").value = "";
+		}
 
-		<button type="button"> Record </button>
-		<button type="button"> Clear </button>
-		<button type="button"> Save </button>
-		<button type="button"> Load </button>
-		<button type="button"> Undo </button>
-
+		function undoMF() {
+			var str = document.getElementById("macroframe").value.split('\n');
+			var newstr = '';
+			for (i = 0; i < str.length - 1; i++) {
+				newstr += str[i];
+				if (i < str.length - 2) {
+					newstr += '\n';
+				};
+			};
+			document.getElementById("macroframe").value = newstr;
+		}
+	</script>
+	<body onload="javascript:ScaleSize()" onresize="history.go(0)">
+		<br>
+		<p align="center"><img src='http://www.princeton.edu/~shuyangl/PARSNIP/banner.png' id='banner' alt='ParSnip - Sniping Utility' align="middle"></p>
+		<br>
+		<p align="center">
+			<button type="button" id="rcd" onclick="recordMF()" class='recordBtn'> RECORD </button>
+			<button type="button" id="clr" onclick="clearMF()" class='stdBtn'> Clear </button>
+			<button type="button"  id="und" onclick="undoMF()" class='stdBtn'> Undo </button>
+			<br><br>
+			<button type="button" id='sav' class='stdBtn'> Save </button>
+			<button type="button" id='lod' class='stdBtn'> Load </button>
+		</p>
+		<br>
 		<h3> Name/ID </h3>
-		<input type="text" name="LOL">
+		<input type="text" id='nameBOX'>
 
 		<h3> Macro </h3>
-		<textarea rows="10" cols="50" disabled> 
-			Action 1 Performed
-			Action 2 Performed
-			Action 3 Performed
-		</textarea>
-
-		<h3> Condition </h3>
-		<select>
-			<option value="None">None</option>
-			<option value="Time">Time</option>
-			<option value="Value">Value</option>
-		</select>
-
-		<br>
-
-		<a href="http://www.w3schools.com" target="frame1">Visit W3Schools</a>
-
-		<br>
-		
-		<iframe name="frame1" id="frame1" src="http://www.cnn.com/" width="800" height="300">
-		</iframe>
-
-		<br>
-
-		<button type="button"> Play </button>
-
-		<br />
-		<br />
-		<input id="URLBox"></input>
-
+<textarea rows="10" cols="50" id="macroframe" disabled>To start recording a macro, enter the target URL into the "URL" box, and then hit "Record" button above and start interacting with the target page!</textarea>
+		<br><br>
+		<b> Load URL:  <b>
+		<input id="URLBox" value='www.cnn.com'> </input>
 		<button id="URLtrig" onclick="go()">Go!</button>
-		<br />
-		<br />
-		
-		<object data="http://www.google.com/" width="800" height="300"><embed src="http://www.google.com/" width="800" height="300"></embed></object>
-		<br />
-		<br />
 		<script>
 			function go() {
-				var o = document.getElementById('obj');
+				var o = document.getElementById('frame1');
 				if (o) {
 					 o.parentNode.removeChild(o);
 				};
 				var x = document.getElementById("URLBox").value;
-				var objec = document.createElement("OBJECT");
-				objec.setAttribute("data", x);
-				objec.setAttribute("id", "obj");
-				document.body.appendChild(objec);
-			}
-			</script>
-			<button id="test" onclick="testURL()">Retrieve Embedded URL</button>
-			<script>
-			function testURL() {
-				var y = document.getElementById('obj');
-				if (y) {
-					var g = y.getAttribute('src');
-					document.getElementById('embedReport').innerHTML = g;
-				};
+				var earl = 'http://' + x;
+				var fr = document.createElement('IFRAME');
+				fr.setAttribute("src", earl);
+				fr.setAttribute("id", "frame1");
+				fr.setAttribute("width", "800");
+				fr.setAttribute("height", "600");
+				document.body.appendChild(fr);
 			}
 		</script>
-		<br />
-		<br />
-		<p id="embedReport">test</p>
+		<div id='trig'>
+			<h3> Trigger </h3>
+			<b> Type:  <b>
+			<br>
+			<select onblur='addSpec()' id='t1'>
+				<option value='None'>None</option>
+				<option value='Time'>Time</option>
+			</select>
+			<br><br>
+			<b id = 'timeslot'></b>
+			<script>
+			function addSpec() {
+			var selector = document.getElementById('t1');
+			var si = selector.selectedIndex;
+			var val = selector.options[si].value;
+				document.getElementById('timeslot').innerHTML = '';
+				var a = document.getElementById('ttrig');
+				if (a) {
+					a.parentNode.removeChild(a);
+				};
+				if (val == 'Time') {
+					document.getElementById('timeslot').innerHTML = 'Activation Time: ';
+					var timer = document.createElement('INPUT');
+					timer.id = 'ttrig';
+					timer.type = 'text';
+					timer.maxLength = 8;
+					timer.defaultValue = '00:00:00';
+					document.getElementById('trig').appendChild(timer);
+				};
+			}
+			</script>
+			<br>
+		</div>
+		<br>
+		<br>
+		<button type="button"> Play </button>
+                <p></p>
 	</body>
 
 </html>
