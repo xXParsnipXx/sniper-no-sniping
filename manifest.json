@@ -1,36 +1,22 @@
 {
   "manifest_version": 2,
-  "name": "SideBar",
+  "name": "Parsnip",
+  "description": "Record macros",
   "version": "1.0",
-  "short_name": "SideB",
-  "version_name": "1.0",
-  "author": "Shuyang Li",
-  "homepage_url": "http://www.princeton.edu/~shuyangl/",
 
-  "description": "Just an extension with an icon + Sidebar",
-  "icons": { "16": "icon16.png",
-			"32": "icon32.png",
-           "48": "icon48.png",
-          "128": "icon128.png" },
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_title": "Click Here"
+  },
 
   "background": {
-		"page": "background.html"
-	},
-  "incognito": "spanning",
-  "offline_enabled": true,
-  "omnibox": {
-    "keyword": "hello"
+    "scripts": ["background.js"],
+    "persistent": true
   },
-  "options_ui": {
-    "chrome_style": true,
-    "page": "options.html"
-  },
-  "browser_action": {
-          "default_icon": {
-            "19": "icon19.png",
-            "38": "icon38.png"
-          },
-  },
-	
-  "permissions": ["tabs", "bookmarks", "unlimitedStorage", "activeTab", "alarms", "notifications"]
+
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "https://ajax.googleapis.com/"
+  ]
 }
