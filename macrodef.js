@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // when click button X, send message to background.js
 document.getElementById("sav").addEventListener("click", function() {
 	chrome.runtime.sendMessage({type: "state", value: "save"});
@@ -27,8 +26,4 @@ document.getElementById("und").addEventListener("click", function () {
 }, false);
 document.getElementById("lod").addEventListener("click", function () {
 	chrome.runtime.sendMessage({type: "state", value: "load"});
-=======
-document.getElementById('sav').addEventListener("click", function() {
-	alert("ALERTTTTTT");
->>>>>>> origin/master
 }, false);
