@@ -2,7 +2,7 @@
 <html>
 
 	<head>
-		<title> ParSnip - Sniping Utility </title>
+		<title>PARSNIPPARSNIP</title>
 		<link rel="stylesheet" type="text/css" href="mystyle.css">
 	</head>
 	<script language="javascript">
@@ -73,27 +73,8 @@
 		<input type="text" id='nameBOX'>
 
 		<h3> Macro </h3>
-<textarea rows="10" cols="50" id="macroframe" disabled>To start recording a macro, enter the target URL into the "URL" box, and then hit "Record" button above and start interacting with the target page!</textarea>
+<textarea rows="10" cols="50" id="macroframe" disabled>To start recording a macro, hit "Record" button above and start interacting with the target page!</textarea>
 		<br><br>
-		<b> Load URL:  <b>
-		<input id="URLBox" value='www.cnn.com'> </input>
-		<button id="URLtrig" onclick="go()">Go!</button>
-		<script>
-			function go() {
-				var o = document.getElementById('frame1');
-				if (o) {
-					 o.parentNode.removeChild(o);
-				};
-				var x = document.getElementById("URLBox").value;
-				var earl = 'http://' + x;
-				var fr = document.createElement('IFRAME');
-				fr.setAttribute("src", earl);
-				fr.setAttribute("id", "frame1");
-				fr.setAttribute("width", "800");
-				fr.setAttribute("height", "600");
-				document.body.appendChild(fr);
-			}
-		</script>
 		<div id='trig'>
 			<h3> Trigger </h3>
 			<b> Type:  <b>
@@ -127,10 +108,7 @@
 			</script>
 			<br>
 		</div>
-		<br>
-		<br>
-		<button type="button"> Play </button>
-                <p></p>
+		<button type="button" class='stdBtn' id='ply'> Play </button>
 	</body>
 
 </html>

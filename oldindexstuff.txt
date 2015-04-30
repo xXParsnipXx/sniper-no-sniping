@@ -1,0 +1,65 @@
+			<select onblur='addSpec()' id='t1'>
+				<option value='None'>None</option>
+				<option value='Time'>Time</option>
+			</select>
+			<br><br>
+			<b id = 'timeslot'></b>
+			<script>
+			function addSpec() {
+			var selector = document.getElementById('t1');
+			var si = selector.selectedIndex;
+			var val = selector.options[si].value;
+				document.getElementById('timeslot').innerHTML = '';
+				var a = document.getElementById('ttrig');
+				if (a) {
+					a.parentNode.removeChild(a);
+				};
+				var b = document.getElementById('datetr');
+				if (b) {
+					b.parentNode.removeChild(b);
+				};
+				var c = document.getElementById('mo_trig');
+				if (c) {
+					c.parentNode.removeChild(c);
+				};
+				var d = document.getElementById('yrtr');
+				if (d) {
+					d.parentNode.removeChild(d);
+				};
+				if (val == 'Time') {
+					document.getElementById('timeslot').innerHTML = 'Activation Time, Day, Month, Year';
+					var timer = document.createElement('INPUT');
+					timer.id = 'ttrig';
+					timer.type = 'text';
+					timer.maxLength = 8;
+					timer.defaultValue = '00:00:00';
+					document.getElementById('trig').appendChild(timer);
+					
+					var datet = document.createElement('INPUT');
+					datet.id = 'datetr';
+					datet.type = 'text';
+					datet.maxLength = 2;
+					datet.defaultValue = '01';
+					document.getElementById('trig').appendChild(datet);
+					
+					var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+					var month = document.createElement('SELECT');
+					month.id = 'mo_trig';
+					for (var i = 0; i < months.length; i++) {
+						var optionn = document.createElement("option");
+						optionn.value = months[i];
+						optionn.text = months[i];
+						month.appendChild(optionn);
+					}
+					document.getElementById('trig').appendChild(month);
+					
+					var yrt = document.createElement('INPUT');
+					yrt.id = 'yrtr';
+					yrt.type = 'text';
+					yrt.maxLength = 4;
+					yrt.defaultValue = '2015';
+					document.getElementById('trig').appendChild(yrt);
+					
+				};
+			}
+			</script>

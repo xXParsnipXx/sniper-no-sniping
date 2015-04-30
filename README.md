@@ -1,1 +1,0 @@
-# sniper-no-sniping
